@@ -18,3 +18,14 @@ Decision: Use Git for file-level versioning and `logs/work_log.md` / `logs/decis
 
 Reason: Future agents may need both exact diffs and concise project memory.
 
+## 2026-08-02 - Versioned Word builds
+
+Decision: Generate Word thesis drafts with `tools/build_thesis_docx.py` and save each build as a new versioned file in `output/word/`.
+
+Reason: Final thesis formatting needs reproducible outputs without overwriting previous Word builds.
+
+## 2026-08-02 - Word source extraction remains conservative
+
+Decision: Use `tools/extract_docx_to_md.py` only to transfer existing Word draft content into Markdown, not to improve or rewrite it.
+
+Reason: Scientific editing should happen in the Markdown layer where changes can be reviewed and versioned.

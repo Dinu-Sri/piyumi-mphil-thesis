@@ -1,0 +1,18 @@
+{
+  "title": "Development of Enhanced Reflective Coatings for Scintillation Detectors and an Integrated Personal Radiation Monitoring Network",
+  "author": "Piyumi",
+  "degree": "Master of Philosophy",
+  "university": "Wayamba University of Sri Lanka",
+  "chapter_order": [
+    "chapters/ch01_introduction.md",
+    "chapters/ch02_literature_review.md",
+    "chapters/ch03_methodology.md",
+    "chapters/ch04_study1_reflective_coating.md",
+    "chapters/ch05_prd_network.md",
+    "chapters/ch06_conclusions_recommendations.md"
+  ],
+  "include_title_page": true,
+  "line_spacing": "final",
+  "output_prefix": "piyumi_mphil_thesis"
+}
+

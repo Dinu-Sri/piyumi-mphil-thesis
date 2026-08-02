@@ -70,6 +70,10 @@ Formatted Word files should be generated from approved Markdown chapter files. P
 
 Before delivering a `.docx`, render or visually inspect it where possible. Check page breaks, headings, captions, tables, figure placement, references, and WUSL formatting requirements.
 
+Use `tools/build_thesis_docx.py` for versioned Word builds. Do not manually assemble final Word files unless the tool is inadequate for a specific formatting task; if so, record the reason in `logs/decisions.md`.
+
+Use `tools/extract_docx_to_md.py` to refresh Markdown from preserved Word drafts. Extraction is not editing. After extraction, improve the Markdown using `project_docs/scientific_writing_style.md` and the critical review checklist.
+
 ## File Safety
 
 - Do not delete raw source documents.
@@ -85,7 +89,9 @@ Before delivering a `.docx`, render or visually inspect it where possible. Check
 - `chapters/thesis_summary.md`
 - `project_docs/workflow.md`
 - `project_docs/thesis_formatting.md`
+- `project_docs/scientific_writing_style.md`
 - `project_docs/references_and_citations.md`
 - `project_docs/figure_and_image_workflow.md`
 - `project_docs/critical_review_checklist.md`
-
+- `tools/extract_docx_to_md.py`
+- `tools/build_thesis_docx.py`

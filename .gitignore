@@ -15,4 +15,5 @@ Thumbs.db
 # Local runtime/cache folders
 .venv/
 node_modules/
-
+__pycache__/
+*.pyc
