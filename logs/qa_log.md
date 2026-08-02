@@ -44,3 +44,24 @@ Checks completed:
 Notes:
 
 - This is a working thesis build. Before final WUSL submission, confirm whether `Organization of the Thesis` should remain as a body section, move into front matter, merge into Chapter 1, or be removed from the final bound version.
+
+## 2026-08-02 - Word build v006 static TOC visual QA
+
+File: `output/word/piyumi_mphil_thesis_v006_20260802_2212.docx`
+
+Rendered output: `tmp/render_v006_static_toc/` (QA intermediate, not committed)
+
+Checks completed:
+
+- Rendered 22 pages.
+- Title page has no visible page number.
+- Table of Contents appears as front matter on page i.
+- TOC includes chapter and section titles with dotted leaders and visible page numbers.
+- Chapter 1 starts at thesis page 1; Chapter 3 starts at thesis page 13; Chapter 4 starts at thesis page 14.
+- `chapters/ch00_full_thesis_outline.md` is not included in the rendered thesis body.
+- DOCX XML font-color audit: zero non-black `w:color` font tags.
+- Contact-sheet visual inspection: no obvious clipping, overlap, or missing page render.
+
+Notes:
+
+- The static TOC is generated from `tools/toc_entries_current.json`; refresh it with `tools/update_static_toc_entries.py` after chapter edits that affect pagination.

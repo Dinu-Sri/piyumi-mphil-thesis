@@ -15,7 +15,7 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.section import WD_SECTION
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
@@ -28,6 +28,21 @@ MANIFEST_PATH = OUTPUT_DIR / "build_manifest.jsonl"
 
 def load_config(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_toc_entries(config: dict) -> list[dict]:
+    entries_path = config.get("toc_entries_path")
+    if not entries_path:
+        return []
+    path = Path(entries_path)
+    if not path.is_absolute():
+        path = ROOT / path
+    if not path.exists():
+        raise FileNotFoundError(f"Configured TOC entries file not found: {path}")
+    entries = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(entries, list):
+        raise ValueError(f"TOC entries file must contain a JSON list: {path}")
+    return entries
 
 
 def git_commit() -> str:
@@ -173,18 +188,94 @@ def add_title_page(doc: Document, config: dict) -> None:
             run = p.add_run(text)
             set_font(run, "Times New Roman", size, bold=bold)
 
-    main_section = doc.add_section(WD_SECTION.NEW_PAGE)
-    configure_section_layout(main_section)
-    restart_page_numbering(main_section, 1)
-
-
-def restart_page_numbering(section, start: int = 1) -> None:
+def set_page_numbering(section, start: int = 1, fmt: str | None = None) -> None:
     sect_pr = section._sectPr
     pg_num_type = sect_pr.find(qn("w:pgNumType"))
     if pg_num_type is None:
         pg_num_type = OxmlElement("w:pgNumType")
         sect_pr.append(pg_num_type)
     pg_num_type.set(qn("w:start"), str(start))
+    if fmt:
+        pg_num_type.set(qn("w:fmt"), fmt)
+
+
+def add_static_toc_entries(doc: Document, entries: list[dict]) -> None:
+    for entry in entries:
+        text = str(entry.get("text", "")).strip()
+        page = entry.get("thesis_page", entry.get("page"))
+        level = int(entry.get("level", 1))
+        if not text or page is None:
+            continue
+
+        p = doc.add_paragraph()
+        p.paragraph_format.line_spacing = 1.5
+        p.paragraph_format.left_indent = Cm(0.0 if level == 1 else 0.5 if level == 2 else 1.0)
+        p.paragraph_format.tab_stops.add_tab_stop(Cm(14.4), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
+
+        title_run = p.add_run(text.upper() if level == 1 else text)
+        set_font(title_run, "Times New Roman", 12, bold=(level == 1))
+        tab_run = p.add_run("\t")
+        set_font(tab_run, "Times New Roman", 12)
+        page_run = p.add_run(str(page))
+        set_font(page_run, "Times New Roman", 12)
+
+
+def add_live_toc_field(doc: Document) -> None:
+    p = doc.add_paragraph()
+    run = p.add_run()
+    fld_begin = OxmlElement("w:fldChar")
+    fld_begin.set(qn("w:fldCharType"), "begin")
+    instr = OxmlElement("w:instrText")
+    instr.set(qn("xml:space"), "preserve")
+    instr.text = r'TOC \o "1-3" \h \z \u'
+    fld_separate = OxmlElement("w:fldChar")
+    fld_separate.set(qn("w:fldCharType"), "separate")
+    placeholder = OxmlElement("w:t")
+    placeholder.text = "Update fields in Word if page numbers are not shown."
+    fld_end = OxmlElement("w:fldChar")
+    fld_end.set(qn("w:fldCharType"), "end")
+    run._r.append(fld_begin)
+    run._r.append(instr)
+    run._r.append(fld_separate)
+    run._r.append(placeholder)
+    run._r.append(fld_end)
+    set_font(run, "Times New Roman", 12)
+
+
+def add_table_of_contents(doc: Document, entries: list[dict] | None = None) -> None:
+    toc_section = doc.add_section(WD_SECTION.NEW_PAGE)
+    configure_section_layout(toc_section)
+    set_page_numbering(toc_section, 1, "lowerRoman")
+    toc_section.footer.is_linked_to_previous = False
+    if toc_section.footer.paragraphs:
+        add_page_number(toc_section.footer.paragraphs[0])
+
+    title = doc.add_paragraph()
+    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    title.paragraph_format.line_spacing = 1.5
+    run = title.add_run("TABLE OF CONTENTS")
+    set_font(run, "Times New Roman", 14, bold=True)
+
+    if entries:
+        add_static_toc_entries(doc, entries)
+    else:
+        add_live_toc_field(doc)
+
+    body_section = doc.add_section(WD_SECTION.NEW_PAGE)
+    configure_section_layout(body_section)
+    set_page_numbering(body_section, 1)
+    body_section.footer.is_linked_to_previous = False
+    if body_section.footer.paragraphs:
+        add_page_number(body_section.footer.paragraphs[0])
+
+
+def add_body_section_without_toc(doc: Document) -> None:
+    body_section = doc.add_section(WD_SECTION.NEW_PAGE)
+    configure_section_layout(body_section)
+    set_page_numbering(body_section, 1)
+    body_section.footer.is_linked_to_previous = False
+    if body_section.footer.paragraphs:
+        add_page_number(body_section.footer.paragraphs[0])
 
 
 def strip_front_matter(markdown: str) -> str:
@@ -355,10 +446,12 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
     if config.get("include_title_page", True):
         add_title_page(doc, config)
 
-    footer_section = doc.sections[-1]
-    footer_section.footer.is_linked_to_previous = False
-    if footer_section.footer.paragraphs:
-        add_page_number(footer_section.footer.paragraphs[0])
+    toc_mode = config.get("table_of_contents_mode", "static")
+    toc_entries = load_toc_entries(config) if toc_mode == "static" else []
+    if config.get("include_table_of_contents", True):
+        add_table_of_contents(doc, toc_entries)
+    else:
+        add_body_section_without_toc(doc)
 
     first = True
     included = []
@@ -379,6 +472,7 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
     prefix = config.get("output_prefix", "thesis")
     version, output_path = next_version(prefix)
     doc.save(output_path)
+    enable_update_fields_on_open(output_path)
     force_ooxml_font_colors_black(output_path)
 
     manifest = {
@@ -387,6 +481,7 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
         "stage": stage,
         "git_commit": git_commit(),
         "output": output_path.relative_to(ROOT).as_posix(),
+        "toc_mode": toc_mode if config.get("include_table_of_contents", True) else "none",
         "included": included,
         "skipped": skipped,
     }
@@ -395,6 +490,29 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
         handle.write(json.dumps(manifest) + "\n")
 
     return output_path, manifest
+
+
+def enable_update_fields_on_open(docx_path: Path) -> None:
+    with tempfile.TemporaryDirectory(prefix="docx_update_fields_") as tmp:
+        tmp_path = Path(tmp)
+        with zipfile.ZipFile(docx_path, "r") as zin:
+            zin.extractall(tmp_path)
+
+        settings_path = tmp_path / "word" / "settings.xml"
+        text = settings_path.read_text(encoding="utf-8", errors="ignore")
+        if "<w:updateFields" not in text:
+            text = text.replace("</w:settings>", '<w:updateFields w:val="true"/></w:settings>')
+            settings_path.write_text(text, encoding="utf-8", newline="")
+
+        backup = docx_path.with_suffix(".docx.bak")
+        shutil.copy2(docx_path, backup)
+        try:
+            with zipfile.ZipFile(docx_path, "w", compression=zipfile.ZIP_DEFLATED) as zout:
+                for file_path in tmp_path.rglob("*"):
+                    if file_path.is_file():
+                        zout.write(file_path, file_path.relative_to(tmp_path).as_posix())
+        finally:
+            backup.unlink(missing_ok=True)
 
 
 def force_ooxml_font_colors_black(docx_path: Path) -> None:

@@ -17,4 +17,6 @@
 - Updated `tools/build_thesis_docx.py` so all generated Word font colors are explicitly black, including an OOXML normalization pass.
 - Built and rendered `output/word/piyumi_mphil_thesis_v004_20260802_1833.docx` for visual QA.
 - QA result for v004: 21 rendered pages; title page unnumbered; Introduction starts at page 1; A4 page size and WUSL margins retained; XML audit found zero non-black font color tags; rendered image color scan found zero saturated/dark colored pixels; contact-sheet inspection showed no obvious clipping or overlap.
-- Added `chapters/ch00_full_thesis_outline.md` as a cleaned full-thesis organization section based on the existing outline Word drafts and included it in the thesis build configuration.
+- Corrected the outline workflow: `chapters/ch00_full_thesis_outline.md` is retained for planning only and is excluded from default thesis builds.
+- Added a static Table of Contents workflow for headless-safe Word builds: `tools/build_thesis_docx.py` now reads `tools/toc_entries_current.json`, and `tools/update_static_toc_entries.py` can refresh chapter/section page numbers from a rendered PDF after pagination changes.
+- Built and rendered `output/word/piyumi_mphil_thesis_v006_20260802_2212.docx`; QA confirmed the TOC page contains chapter/section titles with visible dotted leaders and page numbers, and the narrative outline is absent from the thesis body.

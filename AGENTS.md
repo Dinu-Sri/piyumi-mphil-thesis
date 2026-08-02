@@ -72,6 +72,8 @@ Before delivering a `.docx`, render or visually inspect it where possible. Check
 
 Use `tools/build_thesis_docx.py` for versioned Word builds. Do not manually assemble final Word files unless the tool is inadequate for a specific formatting task; if so, record the reason in `logs/decisions.md`.
 
+The thesis Table of Contents is generated as static front matter by default, using `tools/toc_entries_current.json`. After chapter text changes enough to affect pagination, build and render a proof DOCX, refresh the TOC entries with `tools/update_static_toc_entries.py <rendered-pdf>`, rebuild the DOCX, and render QA again. Do not include `chapters/ch00_full_thesis_outline.md` in default thesis builds; it is a planning aid, not the submission TOC.
+
 Use `tools/extract_docx_to_md.py` to refresh Markdown from preserved Word drafts. Extraction is not editing. After extraction, improve the Markdown using `project_docs/scientific_writing_style.md` and the critical review checklist.
 
 All thesis Word output must use black font color. Do not use blue Word heading defaults or colored body text unless the user explicitly asks for a special non-submission artifact.
@@ -102,4 +104,6 @@ In Codex on Windows, LibreOffice conversion may need approved unsandboxed execut
 - `project_docs/critical_review_checklist.md`
 - `tools/extract_docx_to_md.py`
 - `tools/build_thesis_docx.py`
+- `tools/update_static_toc_entries.py`
+- `tools/toc_entries_current.json`
 - `tools/render_docx_for_qa.ps1`

@@ -29,3 +29,9 @@ Reason: Final thesis formatting needs reproducible outputs without overwriting p
 Decision: Use `tools/extract_docx_to_md.py` only to transfer existing Word draft content into Markdown, not to improve or rewrite it.
 
 Reason: Scientific editing should happen in the Markdown layer where changes can be reviewed and versioned.
+
+## 2026-08-02 - Static thesis TOC
+
+Decision: Generate the thesis Table of Contents as static front matter from `tools/toc_entries_current.json` instead of relying on a live Word TOC field during automated builds.
+
+Reason: LibreOffice headless rendering did not populate live TOC fields reliably, while a static TOC gives visible chapter/section titles and page numbers in QA builds. Page numbers must be refreshed from a rendered proof after pagination-changing edits.

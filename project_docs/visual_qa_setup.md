@@ -51,6 +51,7 @@ Inspect every rendered page before considering a Word file review-ready:
 - Page size is A4.
 - Margins match WUSL requirements.
 - All visible text is black.
+- Table of Contents is visible, contains chapter/section titles, and page numbers match rendered heading pages.
 - Page numbers appear at bottom center.
 - Chapter headings are centered and formatted consistently.
 - Body text is Times New Roman, 12 pt, justified.
@@ -61,5 +62,14 @@ Inspect every rendered page before considering a Word file review-ready:
 - Figures and tables are close to their related text.
 
 Record each QA pass in `logs/work_log.md`.
+
+For static TOC builds, refresh `tools/toc_entries_current.json` after pagination-changing edits:
+
+```powershell
+python .\tools\update_static_toc_entries.py ".\tmp\render_file\file.pdf"
+python .\tools\build_thesis_docx.py --stage final
+```
+
+Then render the rebuilt DOCX and visually inspect the TOC again.
 
 If a render process hangs, check for `soffice`, `soffice.bin`, or Python renderer processes and stop only the stuck render processes before retrying.

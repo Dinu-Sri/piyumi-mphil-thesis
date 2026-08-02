@@ -4,7 +4,6 @@
   "degree": "Master of Philosophy",
   "university": "Wayamba University of Sri Lanka",
   "chapter_order": [
-    "chapters/ch00_full_thesis_outline.md",
     "chapters/ch01_introduction.md",
     "chapters/ch02_literature_review.md",
     "chapters/ch03_methodology.md",
@@ -13,6 +12,9 @@
     "chapters/ch06_conclusions_recommendations.md"
   ],
   "include_title_page": true,
+  "include_table_of_contents": true,
+  "table_of_contents_mode": "static",
+  "toc_entries_path": "tools/toc_entries_current.json",
   "line_spacing": "final",
   "output_prefix": "piyumi_mphil_thesis"
 }
