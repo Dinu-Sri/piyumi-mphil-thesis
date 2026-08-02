@@ -7,7 +7,10 @@ import argparse
 import datetime as dt
 import json
 import re
+import shutil
 import subprocess
+import tempfile
+import zipfile
 from pathlib import Path
 
 from docx import Document
@@ -15,7 +18,7 @@ from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt
+from docx.shared import Cm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "tools" / "thesis_build_config.json"
@@ -56,6 +59,7 @@ def next_version(prefix: str) -> tuple[int, Path]:
 
 def set_font(run, name: str, size_pt: int | float | None = None, bold: bool | None = None, italic: bool | None = None) -> None:
     run.font.name = name
+    run.font.color.rgb = RGBColor(0, 0, 0)
     r_pr = run._element.get_or_add_rPr()
     r_fonts = r_pr.rFonts
     if r_fonts is None:
@@ -73,17 +77,12 @@ def set_font(run, name: str, size_pt: int | float | None = None, bold: bool | No
 
 def configure_document(doc: Document, line_spacing: float) -> None:
     section = doc.sections[0]
-    section.page_width = Cm(21.0)
-    section.page_height = Cm(29.7)
-    section.left_margin = Cm(3.7)
-    section.right_margin = Cm(2.5)
-    section.top_margin = Cm(3.5)
-    section.bottom_margin = Cm(3.5)
-    section.footer_distance = Cm(1.0)
+    configure_section_layout(section)
 
     styles = doc.styles
     normal = styles["Normal"]
     normal.font.name = "Times New Roman"
+    normal.font.color.rgb = RGBColor(0, 0, 0)
     normal_rpr = normal._element.get_or_add_rPr()
     normal_fonts = normal_rpr.rFonts
     if normal_fonts is None:
@@ -95,9 +94,17 @@ def configure_document(doc: Document, line_spacing: float) -> None:
     normal.paragraph_format.line_spacing = line_spacing
     normal.paragraph_format.space_after = Pt(0)
 
-    for name in ["Heading 1", "Heading 2", "Heading 3"]:
+    for style in styles:
+        if hasattr(style, "font") and style.font is not None:
+            try:
+                style.font.color.rgb = RGBColor(0, 0, 0)
+            except Exception:
+                pass
+
+    for name in ["Heading 1", "Heading 2", "Heading 3", "List Bullet", "List Number"]:
         style = styles[name]
         style.font.name = "Times New Roman"
+        style.font.color.rgb = RGBColor(0, 0, 0)
         style_rpr = style._element.get_or_add_rPr()
         style_fonts = style_rpr.rFonts
         if style_fonts is None:
@@ -105,11 +112,25 @@ def configure_document(doc: Document, line_spacing: float) -> None:
             style_rpr.append(style_fonts)
         style_fonts.set(qn("w:ascii"), "Times New Roman")
         style_fonts.set(qn("w:hAnsi"), "Times New Roman")
-        style.font.bold = True
-        style.font.size = Pt(14 if name == "Heading 1" else 12)
+        if name.startswith("Heading"):
+            style.font.bold = True
+            style.font.size = Pt(14 if name == "Heading 1" else 12)
+        else:
+            style.font.bold = False
+            style.font.size = Pt(12)
         style.paragraph_format.line_spacing = line_spacing
-        style.paragraph_format.space_before = Pt(12 if name == "Heading 1" else 6)
-        style.paragraph_format.space_after = Pt(6)
+        style.paragraph_format.space_before = Pt(12 if name == "Heading 1" else 6 if name.startswith("Heading") else 0)
+        style.paragraph_format.space_after = Pt(6 if name.startswith("Heading") else 0)
+
+
+def configure_section_layout(section) -> None:
+    section.page_width = Cm(21.0)
+    section.page_height = Cm(29.7)
+    section.left_margin = Cm(3.7)
+    section.right_margin = Cm(2.5)
+    section.top_margin = Cm(3.5)
+    section.bottom_margin = Cm(3.5)
+    section.footer_distance = Cm(1.0)
 
 
 def add_page_number(paragraph) -> None:
@@ -152,7 +173,18 @@ def add_title_page(doc: Document, config: dict) -> None:
             run = p.add_run(text)
             set_font(run, "Times New Roman", size, bold=bold)
 
-    doc.add_page_break()
+    main_section = doc.add_section(WD_SECTION.NEW_PAGE)
+    configure_section_layout(main_section)
+    restart_page_numbering(main_section, 1)
+
+
+def restart_page_numbering(section, start: int = 1) -> None:
+    sect_pr = section._sectPr
+    pg_num_type = sect_pr.find(qn("w:pgNumType"))
+    if pg_num_type is None:
+        pg_num_type = OxmlElement("w:pgNumType")
+        sect_pr.append(pg_num_type)
+    pg_num_type.set(qn("w:start"), str(start))
 
 
 def strip_front_matter(markdown: str) -> str:
@@ -275,7 +307,7 @@ def add_markdown_file(doc: Document, path: Path, line_spacing: float, first_chap
             text = heading.group(2).strip()
             if level == 1:
                 if not first_chapter:
-                    doc.add_section(WD_SECTION.NEW_PAGE)
+                    doc.add_page_break()
                 p = doc.add_paragraph(style="Heading 1")
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 run = p.add_run(text.upper())
@@ -320,12 +352,13 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
     doc = Document()
     configure_document(doc, line_spacing)
 
-    footer = doc.sections[0].footer
-    if footer.paragraphs:
-        add_page_number(footer.paragraphs[0])
-
     if config.get("include_title_page", True):
         add_title_page(doc, config)
+
+    footer_section = doc.sections[-1]
+    footer_section.footer.is_linked_to_previous = False
+    if footer_section.footer.paragraphs:
+        add_page_number(footer_section.footer.paragraphs[0])
 
     first = True
     included = []
@@ -346,6 +379,7 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
     prefix = config.get("output_prefix", "thesis")
     version, output_path = next_version(prefix)
     doc.save(output_path)
+    force_ooxml_font_colors_black(output_path)
 
     manifest = {
         "version": version,
@@ -361,6 +395,47 @@ def build_docx(config: dict, stage: str, include_placeholders: bool) -> tuple[Pa
         handle.write(json.dumps(manifest) + "\n")
 
     return output_path, manifest
+
+
+def force_ooxml_font_colors_black(docx_path: Path) -> None:
+    """Normalize all Word font color declarations to black.
+
+    python-docx can leave unused built-in style color values in styles.xml.
+    This post-save OOXML pass keeps the thesis submission rule simple: every
+    explicit w:color declaration in the generated package is black.
+    """
+
+    with tempfile.TemporaryDirectory(prefix="docx_black_font_") as tmp:
+        tmp_path = Path(tmp)
+        with zipfile.ZipFile(docx_path, "r") as zin:
+            zin.extractall(tmp_path)
+
+        for xml_path in (tmp_path / "word").rglob("*.xml"):
+            text = xml_path.read_text(encoding="utf-8", errors="ignore")
+
+            def repl(match: re.Match[str]) -> str:
+                tag = match.group(0)
+                tag = re.sub(r'\s+w:themeColor="[^"]*"', "", tag)
+                tag = re.sub(r'\s+w:themeTint="[^"]*"', "", tag)
+                tag = re.sub(r'\s+w:themeShade="[^"]*"', "", tag)
+                if 'w:val="' in tag:
+                    tag = re.sub(r'w:val="[^"]*"', 'w:val="000000"', tag)
+                else:
+                    tag = tag[:-2] + ' w:val="000000"/>'
+                return tag
+
+            text = re.sub(r"<w:color\b[^>]*/>", repl, text)
+            xml_path.write_text(text, encoding="utf-8", newline="")
+
+        backup = docx_path.with_suffix(".docx.bak")
+        shutil.copy2(docx_path, backup)
+        try:
+            with zipfile.ZipFile(docx_path, "w", compression=zipfile.ZIP_DEFLATED) as zout:
+                for file_path in tmp_path.rglob("*"):
+                    if file_path.is_file():
+                        zout.write(file_path, file_path.relative_to(tmp_path).as_posix())
+        finally:
+            backup.unlink(missing_ok=True)
 
 
 def main() -> int:

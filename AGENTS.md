@@ -74,6 +74,12 @@ Use `tools/build_thesis_docx.py` for versioned Word builds. Do not manually asse
 
 Use `tools/extract_docx_to_md.py` to refresh Markdown from preserved Word drafts. Extraction is not editing. After extraction, improve the Markdown using `project_docs/scientific_writing_style.md` and the critical review checklist.
 
+All thesis Word output must use black font color. Do not use blue Word heading defaults or colored body text unless the user explicitly asks for a special non-submission artifact.
+
+Visual QA requires LibreOffice/`soffice` plus Poppler/`pdftoppm`. On a new Windows computer, install LibreOffice with `winget install --id TheDocumentFoundation.LibreOffice --source winget --accept-package-agreements --accept-source-agreements`, then render with `tools/render_docx_for_qa.ps1`. Read `project_docs/visual_qa_setup.md` before final Word delivery.
+
+In Codex on Windows, LibreOffice conversion may need approved unsandboxed execution. If a render hangs, do not launch repeated render jobs; check for stuck `soffice`/Python processes, stop only those render processes, and retry with the Windows-native helper.
+
 ## File Safety
 
 - Do not delete raw source documents.
@@ -90,8 +96,10 @@ Use `tools/extract_docx_to_md.py` to refresh Markdown from preserved Word drafts
 - `project_docs/workflow.md`
 - `project_docs/thesis_formatting.md`
 - `project_docs/scientific_writing_style.md`
+- `project_docs/visual_qa_setup.md`
 - `project_docs/references_and_citations.md`
 - `project_docs/figure_and_image_workflow.md`
 - `project_docs/critical_review_checklist.md`
 - `tools/extract_docx_to_md.py`
 - `tools/build_thesis_docx.py`
+- `tools/render_docx_for_qa.ps1`

@@ -29,3 +29,18 @@ Purpose:
 
 Use `--stage initial` for double-spaced initial-submission drafts.
 
+## Render DOCX For Visual QA
+
+Install LibreOffice first if needed:
+
+```powershell
+winget install --id TheDocumentFoundation.LibreOffice --source winget --accept-package-agreements --accept-source-agreements
+```
+
+Then render:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\render_docx_for_qa.ps1 -InputDocx ".\output\word\piyumi_mphil_thesis_v001_20260802_1745.docx" -EmitPdf
+```
+
+Inspect every generated `page-<N>.png` before delivery.

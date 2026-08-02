@@ -8,6 +8,7 @@ These notes are the local working rulebook for Word generation and final formatt
 
 - Paper size: A4, 210 mm x 297 mm.
 - Font: Times New Roman throughout the thesis.
+- Font color: black throughout the thesis.
 - Body text: 12 pt.
 - Initial submission for evaluation: double line spacing.
 - Final copy after evaluation: 1.5 line spacing.
@@ -112,6 +113,7 @@ Results and discussion may be combined in a chapter when appropriate.
 - Maximum length: 600 words.
 - Should outline justification, methodology, significant findings, and conclusions.
 - Times New Roman, 12 pt.
+- Black font color.
 - Double spacing according to the specimen.
 
 ## Figures
@@ -194,4 +196,3 @@ The default build tool should use:
 - Double spacing for initial-submission mode.
 - Centered footer page number.
 - Versioned output names in `output/word/`.
-
