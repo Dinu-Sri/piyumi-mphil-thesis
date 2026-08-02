@@ -1,0 +1,18 @@
+# Office temporary files
+~$*
+*.tmp
+
+# Render and conversion scratch
+tmp/
+.tmp/
+rendered_pages/
+*.log
+
+# OS noise
+Thumbs.db
+.DS_Store
+
+# Local runtime/cache folders
+.venv/
+node_modules/
+

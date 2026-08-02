@@ -1,0 +1,111 @@
+---
+title: "Detailed Thesis Outline"
+status: "source-derived outline"
+source: "source_documents/word_drafts/Ch0 - Thesis outline.docx"
+created: "2026-08-02"
+last_updated: "2026-08-02"
+---
+
+# CHAPTER 1: INTRODUCTION
+
+This chapter sets the stage for entire study based on the background information in the proposal.
+
+### 1.1. Introduction: Justification and Background to the proposed research: Discuss the critical role of radiation detection in border security, medical imaging, and nuclear plants.
+
+The Broad Context: Start by explaining that radiation detection is a critical requirement in medical imaging, environmental monitoring, and preventing the smuggling of nuclear materials at borders.
+
+The Technology: Introduce scintillation detectors as the most utilized sensors for measuring high-energy radiation like X-rays and Gamma rays. Explain that they consist of a scintillation crystal, a photomultiplier, and an optically opaque casing.
+
+Introduce scintillation detectors and the specific problem: the loss of secondary photons escaping the crystal, which affects detector efficiency.
+
+The Core Technical Problem (Coating): Explain the physics limitation where secondary photons escape the crystal without contributing to the detector output, which lowers efficiency. Mention that Magnesium Oxide (MgO) is currently used as a reflective coating to prevent this, but it suffers from low efficiency and poor bonding properties.
+
+State the core problem: the current Magnesium Oxide (MgO) coating has low efficiency/performance.
+
+The Practical Problem (PRDs and Networking): Introduce Personal Radiation Detectors (PRDs) and their importance for Front Line Officers (FLOs) at border crossings. Explain that while PRDs are highly portable, current systems lack an efficient, real-time communication mechanism to link the PRDs with a Central Alarm Station (CAS).
+
+Explain the role of Front-Line Officers (FLOs) and the evolution and limitations of Personal Radiation Detectors (PRDs).
+
+Introduce the need for a networked PRD system to communicate with the Central Alarm Station (CAS).
+
+The Justification: Explicitly state why this study is necessary. Explain that the propose exploring alternative coating materials like Aluminium Oxide (Al2O3), Titanium Dioxide (TiO2), Zinc Oxide (ZnO), and Barium (II) Sulphate (BaSO4) to optimize detector performance. Furthermore, justify phase two by stating the need to develop a networked communication system for smooth integration between the PRDs and the CAS.
+
+### 1.2. Objectives:
+
+### 1.2.1. General Objectives: To enhance the scintillator material's overall performance by addressing current limitations and incorporating a PRD device capable of centralized monitoring.
+
+### 1.2.2. Specific objectives: Develop an enhanced reflective coating to minimize propagation loss.
+
+Test alternative coating materials (Al2O3, TiO2, ZnO, BaSO4) and compare their performance.
+
+Identify compatible binders and solvents for adhesion.
+
+Identify proper coating application techniques.
+
+Test the enhanced detector in various environmental conditions against uncoated states.
+
+Integrate the detector into existing systems, test in real-world situations, and develop a secure communication system.
+
+# CHAPTER 2: LITERATURE REVIEW
+
+This chapter will expand on the background research that cited in the proposal.
+
+The history and principles of radioactivity and radiation detection.
+
+Types of Radiation Detectors: Gas Detectors, Scintillation Detectors, and Semiconductor Detectors.
+
+In-depth mechanics of Scintillation Detectors, photomultiplier tubes (PMTs), and different crystal types (NaI(Tl), CsI(Tl), BGO, etc.).
+
+Current reflective coating technologies, primarily focusing on the limitations of MgO.
+
+Review of alternative materials like Zinc Oxide (ZnO) nanoparticles and Aluminum Oxide (Al2O3) based on previous studies.
+
+The role of binder properties (adhesion, optical compatibility, hygroscopicity).
+
+# CHAPTER 3: MATERIALS AND METHODS
+
+Describe the experimental setup for the two phases outlined in the proposal.
+
+Phase 1: Optimizing Scintillation Detector Performance:
+
+Explain the criteria for material selection (Chemical stability, refractivity, density, durability).
+
+Describe the experimental analysis and the techniques used to apply the binder and the coating.
+
+Detail the process for particle size optimization for both MgO and the new alternative oxides.
+
+Phase 2: Development of a Communication System:
+
+Explain how plan to develop the networked detector system to integrate PRDs with the Central Alarm Station (CAS).
+
+# CHAPTER 4: RESULTS
+
+(As per the guidelines, Results may be combined with the Discussion in a single chapter if preferred).
+
+Present the empirical data from testing the chemical compatibility, surface bonding ability, and temperature stability of the crystals.
+
+Show the quantitative results comparing the light reflectivity and detector efficiency of MgO versus the alternative materials (Al2O3, TiO2, ZnO, BaSO4).
+
+Present the performance metrics of the new CAS networked communication system (latency, success rate, etc.).
+
+# CHAPTER 5: DISCUSSION
+
+Interpret the results: Why did one coating material outperform the others? How did the binder's refractive index affect the outcome?
+
+Discuss the real-world implications of the findings for FLOs and national security border crossings.
+
+Address any anomalies, such as issues with moisture degradation or discoloration during testing.
+
+# CHAPTER 6: CONCLUSIONS, RECOMMENDATIONS AND FUTURE SUGGESTIONS
+
+Conclude whether successfully developed an enhanced coating and a functional networked PRD system.
+
+Recommend the optimal coating material, binder, and application technique for future manufacturing.
+
+Suggest future research (e.g., long-term radiation exposure testing on the new coatings).
+
+REFERENCES & APPENDICES
+
+References: Ensure format citations strictly using the Harvard System, arranged alphabetically at the end, and chronologically in-text (e.g., Smith et al., 2023).
+
+Appendices: Include raw data sets from the spectrometer readings, detailed coding scripts for the PRD-CAS network system, and any published journal articles arising from this thesis.

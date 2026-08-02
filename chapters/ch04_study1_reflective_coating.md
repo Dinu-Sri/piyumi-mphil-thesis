@@ -1,0 +1,109 @@
+---
+title: "Chapter 4: Development of an Enhanced Coating for a Scintillation Detector"
+status: "working draft"
+source: "source_documents/word_drafts/Chapter 4 - Study1.docx"
+created: "2026-08-02"
+last_updated: "2026-08-02"
+---
+
+# Chapter 4
+
+Development of an Enhanced Coating for a Scintillation Detector
+
+## Introduction
+
+## Materials and Methods
+
+CsI(Tl) scintillation crystal was used in this study as the detector material because of its high light yield, emission peak near 550 nm, and wide application in radiation detection and systems [1-4]. However, CsI(Tl) is highly hygroscopic, and its performance can be affected by surface losses and incomplete photon collection [5-9]. For this reason, reflective coatings were developed in this work to enhance light collection efficiency by redirecting scintillation photons toward the photodetector while maintaining compatibility with the moisture-sensitive crystal surface.
+
+The chemicals used in this study were not analytical grade but were commercial grade, in good condition, and used without further purification. The coating materials selected for the preparation of reflective coatings were Aluminium Oxide (Al2O3), Barium Sulfate (BaSO4), Magnesium Oxide (MgO), Titanium Dioxide (TiO2), and Zinc Oxide (ZnO). These materials were selected based on their high reflectivity, diffuse reflection capability, white color, and suitability for photon reflection in scintillation applications [10-14]. These materials were investigated as potential reflective coatings to improve light collection efficiency in CsI (Tl) scintillation crystals by minimizing photon propagation losses.
+
+Three binders were selected to evaluate coating adhesion and compatibility: Polyvinyl acetate (PVAc), Carboxymethyl cellulose (CMC), and Polyvinyl pyrrolidone (PVP). Isopropanol and ethanol were used as solvents for binder preparation due to their compatibility with the hygroscopic nature of the CsI(Tl) scintillation crystal, which should not be exposed to water [15-26].
+
+Since the CsI(Tl) scintillation crystal is highly sensitive to moisture and expensive, glass substrates were used during the initial optimization stage instead of direct coating on scintillator surfaces. This enabled systematic optimization of coating parameters without risking damage to the scintillator crystal. Glass slides with dimensions of 20 mm x 35 mm x 2 mm were used as the coating substrates. The glass substrates were cleaned using acetone and deionized water to remove contaminants and ensure proper adhesion of the coatings.
+
+Initially, baseline characterization of the five coating materials was performed with particle size analysis before further experimentation. The particle size distribution was measured using the FRITSCH ANALYSETTE 28 Particle Sizer to ensure consistency among coating powder materials. This measurement is critical since commercial grade materials were used in this study. The average particle size of all coating materials was found to be within the range of 10-20 um, which was considered suitable for coating preparation.
+
+Then, baseline absorbance characterization of the individual coating materials and binders was conducted using the Shimadzu UV-1800 UV-Vis Spectrophotometer as the baseline characterization. Since the highest secondary photon emission intensity of the Cs(Tl) crystals occurred at 550 nm, the measurements were centered on that wavelength.
+
+For the baseline measurements, sample preparations were carried out with the doctor-blade technique. The doctor-blade technique was initially employed to fabricate uniform coatings on glass substrates due to its simplicity and ability to produce films with controlled thickness. Separate coatings of the five coating materials and three binders were deposited individually for baseline analysis. Fig. 1(a) and 1(b) show the prepared samples for the baseline characterization measurements. Since the standalone materials were in powder form, a volatile ethanol solvent was utilized to facilitate their deposition, whereas the pure polymeric binders were deposited independently.
+
+Figure 1: Samples prepared for baseline characterizations of the (a) five coating materials (from the left: TiO2, BaSO4, MgO, ZnO, and Al2O3) and (b) three binders (from the left:PVP, PVAc, CMC)
+
+Afterwards, coating mixtures were prepared by combining each coating material separately with each binder, resulting in 15 different coating formulations. The mixtures were prepared by dispersing the oxide powder and binder in the corresponding solvent under continuous stirring by hand until a homogeneous paste was obtained, as shown in Fig. 2(a), 2(b), and 2(c). For the initial preparations, a fixed composition of 5 wt.% coating material, 5 wt.% binder, and 90 wt.% solvent was used for all formulations. The prepared samples were then deposited on glass substrates using the doctor-blade technique and allowed them to dry at room temperature.
+
+Figure 2: Prepared coatings using all the 5 coating materials (Al2O3, BaSO4, MgO, TiO2, and ZnO) separately with (a) CMC binder, (b) PVAc binder, and (c) PVP binder
+
+The compatibility of the coating formulations was evaluated through visual inspection during and after preparation. Parameters such as agglomeration, phase separation, coating uniformity, adhesion to the substrate, and surface stability were observed. Coatings prepared using the CMC binder exhibited poor adhesion and instability on the glass substrate regardless of composition. Therefore, further experiments were continued only with PVAc and PVP-based formulations, as these demonstrated better coating reliability and adhesion.
+
+Absorbance analysis of the 15 prepared coatings was performed using UV-visible spectroscopy. Measurements were focused particularly on 550 nm, corresponding to the peak scintillation emission wavelength of CsI(Tl). At this wavelength, absorbance should be minimal to ensure that scintillation photons are not lost through absorption by the coating. Comparative absorbance analysis between coatings and individual coating materials was performed to evaluate the influence of binder incorporation on optical behavior. Based on absorbance and transmittance analysis, six coating formulations were selected for further characterization. The selected coatings were Al2O3 + PVAc, TiO2 + PVAc, ZnO + PVAc, Al2O3 + PVP, BaSO4 + PVP, and TiO2 + PVP.
+
+As the third step, samples were prepared again with the spin coating method for diffuse reflectance and thickness analysis. The spin coating technique was used instead of the doctor-blade method, since spin coating provides better thickness uniformity over the entire substrate surface. The six selected coating formulations were deposited onto 20 mm x 35 mm x 2 mm glass slides using a spin coater operated with the parameters at 500 rpm for 30 seconds. Fig. 3(a) shows images of the samples being prepared in the spin coater, and Fig. 3(b) shows the six prepared 6 coating samples.
+
+Figure 3: (a)Preparing coating samples for the diffuse reflectance and thickness analysis using a spin coater and (b) prepared 6 coatings for diffuse reflectance analysis and thickness analysis
+
+Diffuse reflectance measurements were performed using the Shimadzu UV-3600i Plus Spectrophotometer to evaluate the photon reflection capability of the selected coatings. Measurements were carried out at 550 nm to assess coating performance at the maximum emission wavelength of the scintillator. Since the glass substrate itself exhibited high reflectance, relative comparison of reflectance values among coatings was used instead of absolute reflectance analysis. Among the tested coatings, TiO2 + PVP exhibited the highest diffuse reflectance and was identified as the most suitable reflective coating for the scintillator application. Coating thickness was maintained within a similar range without varying for all samples to ensure fair comparison. The thickness of the coatings was measured using a travelling microscope, and the average thickness range was approximately 100-120 um.
+
+Figure 4: Obtaining readings to determine the thickness of the coating samples using a travelling microscope
+
+In the fourth step, to determine the optimum binder concentration for the finalized coating, samples were prepared using TiO2 as the coating material and PVP as the binder while varying the binder weight percentage. Four coating samples were prepared with binder-to-coating ratios of 2:20, 5:20, 10:20, and 15:20 (wt.%). To isolate the effect of the binder, samples were prepared by maintaining a constant wt.% of the coating material while varying the wt.% of the binding agent. Spin coating was performed under the same processing conditions used previously. Diffuse reflectance analysis indicated that reflectance improved with increasing binder concentration. However, the 15 wt.% binder sample exhibited sticky surface characteristics and poor mechanical handling. Therefore, 10 wt.% PVP was selected as the optimum binder concentration for the final coating formulation.
+
+The percentage transmittance (T%) of the coatings was calculated from absorbance values using the following equation.
+
+Where A is the absorbance of the coating measured at 550 nm. This equation was used to compare the ability of each coating to transmit scintillation photons while minimizing optical losses.
+
+## Results and Discussion
+
+## References
+
+F. N. Flakus, "Radiation detection Detecting and measuring ionizing radiation-a short history."
+
+G. F. Knoll, "Radiation Detection and Measurement," John Wiley & Sons, 2010.
+
+Doug. Reilly, Norbert. Ensslin, Hastings. Smith, Sarah. Kreiner, Los Alamos National Laboratory (U.S.), and Etats-Unis. Nuclear Regulatory Commission., Passive nondestructive assay of nuclear materials. US Department of Commerce, National Technical Information Service, 1991.
+
+A. Owens, "Semiconductor materials and radiation detection," J Synchrotron Radiat, vol. 13, no. 2, pp. 143-150, Mar. 2006, doi: 10.1107/S0909049505033339.
+
+N. N. Asemi, M. J. Aljaafreh, S. Prasad, S. Aldawood, and M. S. AlSalhi, "Development of a gamma-ray scintillation detector based on blue-emitting oligomers and ZnO nanoparticles," J King Saud Univ Sci, vol. 34, no. 4, Jun. 2022, doi: 10.1016/j.jksus.2022.101967.
+
+A. Mahmoud Hamdy Abaza, "New Trend in Radiation Dosimeters," American Journal of Modern Physics, vol. 7, no. 1, p. 21, 2018, doi: 10.11648/j.ajmp.20180701.13.
+
+M. Moszyński, "Inorganic scintillation detectors in γ-ray spectrometry," in Nuclear Instruments and Methods in Physics Research, Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, Jun. 2003, pp. 101-110. doi: 10.1016/S0168-9002(03)01030-1.
+
+C. W. E. Van Eijk, "Inorganic scintillators in medical imaging detectors," in Nuclear Instruments and Methods in Physics Research, Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, Aug. 2003, pp. 17-25. doi: 10.1016/S0168-9002(03)01542-0.
+
+T. Yanagida, "Inorganic scintillating materials and scintillation detectors," Proceedings of the Japan Academy Series B: Physical and Biological Sciences, vol. 94, no. 2. Japan Academy, pp. 75-97, 2018. doi: 10.2183/pjab.94.007.
+
+M. F. L'annunziata, "SOLID SCINTILLATION ANALYSIS," 2003. doi: 10.1016/B978-0-12-436603-9.50016-8.
+
+M. F. Eissa and A. H. Aly, "Improve the Efficiency of Scintillation Detectors Using Reflectors Based on Photonic Crystals Arrays," Journal of Electromagnetic Analysis and Applications, vol. 06, no. 02, pp. 25-29, 2014, doi: 10.4236/jemaa.2014.62004.
+
+Y. Kim et al., "A TIO2-coated reflective layer enhances the sensitivity of a CsI:Tl scintillator for X-ray imaging sensors," J Opt Soc Korea, vol. 18, no. 3, pp. 256-260, 2014, doi: 10.3807/JOSK.2014.18.3.256.
+
+B. K. Cha et al., "Improvement of the sensitivity and spatial resolution of pixelated CsI:Tl scintillator with reflective coating," Nucl Instrum Methods Phys Res A, vol. 607, no. 1, pp. 145-149, Aug. 2009, doi: 10.1016/j.nima.2009.03.145.
+
+G. Carotenuto, A. Longo, G. Nenna, U. Coscia, and M. Palomba, "Functional polymeric coatings for csi(Tl) scintillators," Coatings, vol. 11, no. 11, Nov. 2021, doi: 10.3390/coatings11111279.
+
+T. Kim, S. H. Yi, and S. E. Chun, "Electrophoretic deposition of a supercapacitor electrode of activated carbon onto an indium-tin-oxide substrate using ethyl cellulose as a binder," J Mater Sci Technol, vol. 58, pp. 188-196, Dec. 2020, doi: 10.1016/j.jmst.2020.03.072.
+
+J. E. Marshall et al., "On the solubility and stability of polyvinylidene fluoride," Polymers, vol. 13, no. 9. MDPI AG, May 01, 2021. doi: 10.3390/polym13091354.
+
+MD. L. Kabir, H. J. Kim, C. J. Lee, and S.-J. Choi, "Highly Proton Conductive Poly(vinyl acetate)/Nafion® Composite Membrane for Proton Exchange Membrane Fuel Cell Application," J Nanosci Nanotechnol, vol. 18, no. 9, pp. 6536-6540, Apr. 2018, doi: 10.1166/jnn.2018.15668.
+
+M. Kurakula and G. S. N. K. Rao, "Pharmaceutical assessment of polyvinylpyrrolidone (PVP): As excipient from conventional to controlled delivery systems with a spotlight on COVID-19 inhibition," Journal of Drug Delivery Science and Technology, vol. 60. Editions de Sante, Dec. 01, 2020. doi: 10.1016/j.jddst.2020.102046.
+
+J. Xu, S. L. Chou, Q. F. Gu, H. K. Liu, and S. X. Dou, "The effect of different binders on electrochemical properties of LiNi 1/3Mn1/3Co1/3O2 cathode material in lithium ion batteries," J Power Sources, vol. 225, pp. 172-178, Mar. 2013, doi: 10.1016/j.jpowsour.2012.10.033.
+
+D. Supriadi, R. Ziska, and A. Awaludin, "Effect of Isopropanol and Ethanol on Synthesis Carboxymethyl Cellulose (CMC) from Coconut Husk," IOSR Journal Of Pharmacy And Biological Sciences (IOSR-JPBS) e-ISSN, vol. 16, pp. 2319-7676, doi: 10.9790/3008-1605012430.
+
+J. Salimian, S. Osfouri, R. Azin, and T. Jalali, "Impacts of paste preparation methods on the porous TiO2nanostructure properties and naturally dye-sensitized solar cells performance," Journal of Materials Research and Technology, vol. 18, pp. 4816-4833, May 2022, doi: 10.1016/j.jmrt.2022.04.134.
+
+A. M. E. Sayed, A. M. Abdelghany, and A. Abou Elfadl, "Structural, Optical, Mechanical and Antibacterial Properties of MgO/Poly(Vinyl Acetate)/Poly(Vinyl Chloride) Nanocomposites," Brazilian Journal of Physics, vol. 52, no. 5, Oct. 2022, doi: 10.1007/s13538-022-01156-x.
+
+T. Bardak, A. N. Tankut, N. Tankut, E. Sozen, and D. Aydemir, "The effect of nano-TiO2 and SiO2 on bonding strength and structural properties of poly (vinyl acetate) composites," Measurement (Lond), vol. 93, pp. 80-85, Nov. 2016, doi: 10.1016/j.measurement.2016.07.004.
+
+C. R. Ellinger and S. F. Nelson, "Selective area spatial atomic layer deposition of ZnO, Al2O 3, and aluminum-doped ZnO using poly(vinyl pyrrolidone)," Chemistry of Materials, vol. 26, no. 4, pp. 1514-1522, Feb. 2014, doi: 10.1021/cm402464z.
+
+S. K. Arla, S. S. Sana, V. Badineni, H. Maseed, and V. K. N. Boya, "Effect of binder material in preparation of carbon free TiO2 as photo anode in dye sensitized solar cells," in AIP Conference Proceedings, American Institute of Physics Inc., Oct. 2020. doi: 10.1063/5.0019815.
+
+S. M. Briffa et al., "Development of scalable and versatile nanomaterial libraries for nanosafety studies: polyvinylpyrrolidone (PVP) capped metal oxide nanoparticles," RSC Adv, vol. 7, no. 7, pp. 3894-3906, 2017, doi: 10.1039/c6ra25064e.

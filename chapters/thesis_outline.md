@@ -1,0 +1,91 @@
+---
+title: "Thesis Outline"
+status: "source-derived outline"
+source: "source_documents/word_drafts/Thesis Outline.docx"
+created: "2026-08-02"
+last_updated: "2026-08-02"
+---
+
+# Chapter 1: Introduction
+
+# Chapter 2: Introduction to Radiation Detection and Monitoring Systems
+
+Radiation Detectors
+
+The History and Principles of Radioactivity and Radiation Detection
+
+Evolution of Radiation Detection
+
+Radiation Detector Types and Operation Fundamentals
+
+Scintillation Detector Mechanics
+
+History of Reflective Coating
+
+Reflective Coating Types
+
+Radiation Detector and Reflective Coating Characterization Properties
+
+Coating Properties Measurement Methods
+
+Wireless Radiation Monitoring Networks
+
+History of Wireless Network Development
+
+Wireless Network Types and Operation Fundamentals
+
+Networked Radiation Monitoring - Central Alarm Station
+
+# Chapter 3: Materials, Characterization and System Prototyping Techniques
+
+Materials
+
+Scintillation Crystal - Thallium-doped Cesium Iodide - CsI(Tl)
+
+Metal Oxides (TiO2, Al2O3, MgO, ZnO, BaSO4)
+
+Polymeric Binding Agents (PVP, CMC, PVA)
+
+Solvent
+
+Material Characterization Techniques
+
+Particle Size Analysis
+
+Ultraviolet-Visible Spectroscopy (UV-Vis)
+
+Diffuse Reflectance Spectroscopy
+
+X-Ray Diffraction (XRD)
+
+Digital Colorimetry and Discoloration Assessment
+
+Wireless Network Prototyping and Techniques
+
+Hardware Prototyping and PCB Integration
+
+Network Layout Configuration and Software Environment
+
+Central Alarm System (CAS) Remote Monitoring and Dashboard Development
+
+# Chapter 4: Development of Enhanced Coating for a Scintillation Detector
+
+## Introduction
+
+## Materials and Methods
+
+## Results and Discussion
+
+// Visual Inspection, absorbance, thickness
+
+# Chapter 5: Development of Personal Radiation Monitoring Network
+
+## Introduction
+
+## Materials and Methods
+
+## Results and Discussion
+
+# Chapter 6: Conclusion
+
+## References
