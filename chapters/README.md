@@ -5,6 +5,7 @@ This folder is the working writing layer for the thesis. Raw Word/PDF source fil
 ## Current Draft Map
 
 - `ch00_detailed_thesis_outline.md` - detailed planning outline from the older chapter-zero document.
+- `ch00_full_thesis_outline.md` - cleaned thesis-organization section included in Word builds.
 - `thesis_outline.md` - concise thesis outline and chapter structure.
 - `ch01_introduction.md` - extracted from the current Introduction Word draft.
 - `ch02_literature_review.md` - placeholder to draft.
